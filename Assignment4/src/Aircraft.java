@@ -54,6 +54,6 @@ public class Aircraft {
 
     @Override
     public String toString() {
-        return "Aircraft: " + getName() + " (Max Passengers: " + getPassengers() + ")";
+        return "Aircraft: " + getName() + " Max Passengers: " + getPassengers();
     }
 }
