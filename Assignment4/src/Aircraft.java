@@ -1,54 +1,59 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Aircraft{
+public class Aircraft {
     private String name;
-    private int max_number_of_passengers;
-    String In_which_airport;
-    ArrayList<Passanger> Passangers=new ArrayList<Passanger>();
+    private int maxPassengers;
+    private Airport airport;
+    private List<Passenger> passengers;
 
-    public Aircraft(String name, Integer max_number_of_passengers) {
+    public Aircraft(String name, int maxPassengers) {
         this.name = name;
-        this.max_number_of_passengers = max_number_of_passengers;
+        this.maxPassengers = maxPassengers;
+        this.passengers = new ArrayList<>();
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
-    public void setName(String newname) {
-        this.name = newname;
+    public void setName(String name) {
+        this.name = name;
     }
-    public int getMax_number_of_passengers(){
-        return max_number_of_passengers;
+
+    public int getMaxPassengers() {
+        return maxPassengers;
     }
-    public void setMax_number_of_passengers(int newmax_number_of_passengers) {
-        max_number_of_passengers = newmax_number_of_passengers;
+    public void setMaxPassengers(int maxPassengers) {
+        this.maxPassengers = maxPassengers;
     }
-    public void add_Passenger(Passanger passanger) {
-        if (!Passangers.contains(passanger)) {
-            Passangers.add(passanger);
-            System.out.println(passanger.getPassengerName() + "added to the " + this.getName());
-            passanger.On_which_aircraft = this.getName();
-        }else{
-            System.out.println(passanger.getPassengerName() + " is already in the " + this.getName());
+
+    public Airport getAirport() {
+        return airport;
+    }
+    public void setAirport(Airport airport) {
+        this.airport = airport;
+    }
+
+    public List<Passenger> getPassengers() {
+        return passengers;
+    }
+
+    public void addPassenger(Passenger passenger) {
+        if (getPassengers().size() < getMaxPassengers()) {
+            getPassengers().add(passenger);
+            passenger.setAircraft(this);
+        } else {
+            System.out.println("Aircraft is full! Cant add more passengers");
         }
     }
-    public void remove_Passenger(Passanger passanger){
-        if(Passangers.contains(passanger)) {
-            Passangers.remove(passanger);
-            System.out.println(passanger.getPassengerName() + "removed from the " + getName());
-            passanger.On_which_aircraft = null;
-        }else{
-            System.out.println(passanger.getPassengerName() + " is not in the " + getName());
-        }
+
+    public void removePassenger(Passenger passenger) {
+        getPassengers().remove(passenger);
+        passenger.setAircraft(null);
     }
+
     @Override
-    public String toString(){
-        List<String> name_passengers =new ArrayList<>();
-        for(Passanger passanger : Passangers){
-            name_passengers.add(passanger.getPassengerName());
-        }
-        return "Aircraft: "+ getName()+ ", Max. number of passengers: "+ max_number_of_passengers + ", Location: " + In_which_airport + ", Passengers: " + name_passengers;
+    public String toString() {
+        return "Aircraft: " + getName() + " (Max Passengers: " + getPassengers() + ")";
     }
 }
-
