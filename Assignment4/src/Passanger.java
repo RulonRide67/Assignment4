@@ -1,39 +1,36 @@
-public class Passanger {
-    private String passengerName;
-    String On_which_aircraft;
+class Passenger {
+    private String name;
+    private int seatNumber;
+    private Aircraft aircraft;
 
-    public Passanger(String passengerName) {
-        this.passengerName = passengerName;
-        this.On_which_aircraft = null;
+    public Passenger(String name, int seatNumber) {
+        this.name = name;
+        this.seatNumber = seatNumber;
     }
-    public String getPassengerName() {
-        return passengerName;
+
+    public String getName() {
+        return name;
     }
-    public void setPassengerName(String passengerName) {
-        this.passengerName = passengerName;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getSeatNumber() {
+        return seatNumber;
+    }
+    public void setSeatNumber(int seatNumber) {
+        this.seatNumber = seatNumber;
+    }
+
+    public Aircraft getAircraft() {
+        return aircraft;
+    }
+    public void setAircraft(Aircraft aircraft) {
+        this.aircraft = aircraft;
     }
 
     @Override
     public String toString() {
-        return "Passenger" + passengerName + " is assigned to " + On_which_aircraft;
-    }
-
-    public void assingAircraft(Aircraft aircraft) {
-        if (this.On_which_aircraft == null) {
-            On_which_aircraft = aircraft.getName();
-            aircraft.add_Passenger(this);
-            System.out.println(getPassengerName() + " is assigned to " + On_which_aircraft + "aircraft.");
-        }else{
-            System.out.println(getPassengerName()+ " is already assigned to " + On_which_aircraft + "aircraft.");
-        }
-    }
-    public void removeAircraft(Aircraft aircraft) {
-        if (On_which_aircraft != null) {
-            On_which_aircraft = null;
-            aircraft.remove_Passenger(this);
-            System.out.println(getPassengerName() + " is left " + On_which_aircraft + "aircraft.");
-        }else{
-            System.out.println(getPassengerName()+ " is not assigned to aircraft.");
-        }
+        return "Passenger: " + getName() + " Footprint: " + getSeatNumber();
     }
 }
